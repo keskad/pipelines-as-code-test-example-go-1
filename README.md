@@ -29,7 +29,7 @@ replace.
 
 ## Dependencies
 
-Install the following
+Install the following 
 
 - [micro](https://github.com/micro/micro)
 - [protoc-gen-micro](https://github.com/micro/protoc-gen-micro)
