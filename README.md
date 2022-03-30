@@ -11,7 +11,7 @@ template.
 - [Go Micro Toolkit](https://micro.mu/docs/go-micro.html)
 
 # Getting started
-
+qweqewqe
 First thing to do is update `main.go` with your new project path:13123
 ```diff
 -       proto "gitlab.com/gitlab-org/project-templates/go-micro/proto"
