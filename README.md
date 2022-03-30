@@ -20,7 +20,7 @@ First thing to do is update `main.go` with your new project path:13123
 qewqeqw
 Note that these are not actual environment variables, but values you should
 replace.
-heherr
+heherrewqwqewe
 ## What's contained in this project
 
 - main.go - is the main definition of the service, handler and client
