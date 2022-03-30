@@ -12,8 +12,7 @@ template.
 
 # Getting started
 
-First thing to do is update `main.go` with your new project path:
-
+First thing to do is update `main.go` with your new project path:13123
 ```diff
 -       proto "gitlab.com/gitlab-org/project-templates/go-micro/proto"
 +       proto "gitlab.com/$YOUR_NAMESPACE/$PROJECT_NAME/proto"qweweq
