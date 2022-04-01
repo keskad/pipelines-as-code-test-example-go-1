@@ -24,7 +24,7 @@ heherrewqwqewe
 ## What's contained in this project
 
 - main.go - is the main definition of the service, handler and client
-- proto - contains the protobuf definition of the API
+- proto - contains the protobuf definition of the APIewqeqwe
 wqe
 ## Dependencies
 
