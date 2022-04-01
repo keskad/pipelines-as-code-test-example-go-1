@@ -44,3 +44,4 @@ go run main.go
 ```
 micro call greeter Greeter.Hello '{"name": "John"}'
 ```
+qweqwew
