@@ -17,7 +17,7 @@ First thing to do is update `main.go` with your new project path:13123
 -       proto "gitlab.com/gitlab-org/project-templates/go-micro/proto"
 +       proto "gitlab.com/$YOUR_NAMESPACE/$PROJECT_NAME/proto"qweweq
 ```
-qewqeqw
+qewqeqwewqeqwew
 Note that these are not actual environment variables,eqweqe but values you should
 replace.
 heherrewqwqewe
