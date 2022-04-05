@@ -58,8 +58,6 @@ spec:
                 runAfter:
                     - fetch-repository
                 params:
-                    -   name: CONTEXT_DIR
-                        value: "apps/greeter/java/quarkus"
                     -   name: GOALS
                         value:
                             - clean
@@ -74,8 +72,6 @@ spec:
                 runAfter:
                     - fetch-repository
                 params:
-                    -   name: CONTEXT_DIR
-                        value: "apps/greeter/java/quarkus"
                     -   name: GOALS
                         value:
                             - -DskipTests
