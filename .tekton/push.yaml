@@ -54,6 +54,10 @@ spec:
                     -   name: revision
                         value: $(params.revision)
 
+#            - name: set-version
+#              taskRef:
+#                  name: recognize-version
+
             -   name: test
                 taskRef:
                     name: maven
@@ -74,7 +78,7 @@ spec:
                 taskRef:
                     name: maven
                 runAfter:
-                    - fetch-repository
+                    - test
                 params:
                     -   name: GOALS
                         value:
@@ -86,6 +90,17 @@ spec:
                         workspace: source
                     -   name: maven-settings
                         workspace: maven-settings
+
+            - name: publish-docker
+              taskRef:
+                  name: kaniko
+              runAfter:
+                  - package
+              params:
+                  - name: IMAGE
+                    # $(tasks.set-version.results.version)
+                    value: "docker-registry-lb.default.svc.cluster.local:5000/petclinic:latest"
+
 
     workspaces:
         -   name: maven-settings
