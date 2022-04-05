@@ -58,6 +58,7 @@ spec:
 #              taskRef:
 #                  name: recognize-version
 
+            # Test
             -   name: test
                 taskRef:
                     name: maven
@@ -74,6 +75,7 @@ spec:
                     -   name: maven-settings
                         workspace: maven-settings
 
+            # Package
             -   name: package
                 taskRef:
                     name: maven
@@ -91,6 +93,7 @@ spec:
                     -   name: maven-settings
                         workspace: maven-settings
 
+            # Publish docker
             - name: publish-docker
               taskRef:
                   name: kaniko
