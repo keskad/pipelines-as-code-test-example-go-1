@@ -53,7 +53,7 @@ spec:
                     -   name: revision
                         value: $(params.revision)
 
-            -   name: Test
+            -   name: test
                 taskRef:
                     name: maven
                 runAfter:
@@ -67,7 +67,7 @@ spec:
                     -   name: source
                         workspace: source
 
-            -   name: Package
+            -   name: package
                 taskRef:
                     name: maven
                 runAfter:
