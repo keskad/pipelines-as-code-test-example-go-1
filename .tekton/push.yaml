@@ -38,6 +38,7 @@ spec:
         workspaces:
             -   name: source
             -   name: basic-auth
+            -   name: maven-settings
         tasks:
             -   name: fetch-repository
                 taskRef:
