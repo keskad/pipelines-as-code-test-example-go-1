@@ -88,6 +88,7 @@ spec:
 
     workspaces:
         -   name: maven-settings
+            emptyDir: {}
         -   name: source
             volumeClaimTemplate:
                 spec:
