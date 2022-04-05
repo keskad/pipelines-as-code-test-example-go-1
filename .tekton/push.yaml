@@ -87,6 +87,7 @@ spec:
                         workspace: maven-settings
 
     workspaces:
+        -   name: maven-settings
         -   name: source
             volumeClaimTemplate:
                 spec:
