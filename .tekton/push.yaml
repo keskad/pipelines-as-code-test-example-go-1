@@ -41,6 +41,8 @@ spec:
             -   name: source
             -   name: basic-auth
             -   name: maven-settings
+            -   name: maven-cache
+                mountPath: /root/.m2
         tasks:
             -   name: fetch-repository
                 taskRef:
@@ -123,3 +125,7 @@ spec:
         -   name: basic-auth
             secret:
                 secretName: "pac-git-basic-auth-{{repo_owner}}-{{repo_name}}"
+
+        - name: maven-cache
+          persistentVolumeClaim:
+              claimName: maven-cache
