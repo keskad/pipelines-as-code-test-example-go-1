@@ -32,6 +32,8 @@ spec:
         -   name: revision
             value: "{{ revision }}"
     pipelineSpec:
+        # todo: Move pipeline to external file
+
         params:
             -   name: repo_url
             -   name: revision
