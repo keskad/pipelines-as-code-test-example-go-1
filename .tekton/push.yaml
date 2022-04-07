@@ -83,8 +83,8 @@ spec:
             - name: package
               taskRef:
                   name: maven
-              runAfter:
-                  - test
+#              runAfter:
+#                  - test
               params:
                   - name: GOALS
                     value:
