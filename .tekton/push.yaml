@@ -95,6 +95,8 @@ spec:
                     workspace: source
                   - name: maven-settings
                     workspace: maven-settings
+                  - name: maven-cache
+                    workspace: maven-cache
 
             # Publish docker
             - name: publish-docker
