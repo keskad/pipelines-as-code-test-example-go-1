@@ -14,8 +14,7 @@ metadata:
 
         # Fetch the git-clone task from hub, we are able to reference later on it
         # with taskRef and it will automatically be embedded into our pipeline.
-        pipelinesascode.tekton.dev/task: "git-clone"
-        pipelinesascode.tekton.dev/task-2: "[maven, kaniko]"
+        pipelinesascode.tekton.dev/task: "[git-clone, maven, kaniko]"
         # You can add more tasks in here to reuse, browse the one you like from here
         # https://hub.tekton.dev/
         # example:
@@ -27,75 +26,75 @@ spec:
     params:
         # The variable with brackets are special to Pipelines as Code
         # They will automatically be expanded with the events from Github.
-        -   name: repo_url
-            value: "{{ repo_url }}"
-        -   name: revision
-            value: "{{ revision }}"
+        - name: repo_url
+          value: "{{ repo_url }}"
+        - name: revision
+          value: "{{ revision }}"
     pipelineSpec:
         # todo: Move pipeline to external file
 
         params:
-            -   name: repo_url
-            -   name: revision
+            - name: repo_url
+            - name: revision
         workspaces:
-            -   name: source
-            -   name: basic-auth
-            -   name: maven-settings
-            -   name: maven-cache
-                mountPath: /root/.m2
+            - name: source
+            - name: basic-auth
+            - name: maven-settings
+            - name: maven-cache
+              mountPath: /root/.m2
+
         tasks:
-            -   name: fetch-repository
-                taskRef:
-                    name: git-clone
-                workspaces:
-                    -   name: output
-                        workspace: source
-                    -   name: basic-auth
-                        workspace: basic-auth
-                params:
-                    -   name: url
-                        value: $(params.repo_url)
-                    -   name: revision
-                        value: $(params.revision)
+            - name: fetch-repository
+              taskRef:
+                  name: git-clone
+              workspaces:
+                  - name: output
+                    workspace: source
+                  - name: basic-auth
+                    workspace: basic-auth
+              params:
+                  - name: url
+                    value: $(params.repo_url)
+                  - name: revision
+                    value: $(params.revision)
 
 #            - name: set-version
 #              taskRef:
 #                  name: recognize-version
 
             # Test
-            -   name: test
-                taskRef:
-                    name: maven
-                runAfter:
-                    - fetch-repository
-                params:
-                    -   name: GOALS
-                        value:
-                            - clean
-                            - test
-                workspaces:
-                    -   name: source
-                        workspace: source
-                    -   name: maven-settings
-                        workspace: maven-settings
+#            -   name: test
+#                taskRef:
+#                    name: maven
+#                runAfter:
+#                    - fetch-repository
+#                params:
+#                    -   name: GOALS
+#                        value:
+#                            - clean
+#                            - test
+#                workspaces:
+#                    -   name: source
+#                        workspace: source
+#                    -   name: maven-settings
+#                        workspace: maven-settings
 
             # Package
-            -   name: package
-                taskRef:
-                    name: maven
-                runAfter:
-                    - test
-                params:
-                    -   name: GOALS
-                        value:
-                            - -DskipTests
-                            - clean
-                            - package
-                workspaces:
-                    -   name: source
-                        workspace: source
-                    -   name: maven-settings
-                        workspace: maven-settings
+            - name: package
+              taskRef:
+                  name: maven
+              runAfter:
+                  - test
+              params:
+                  - name: GOALS
+                    value:
+                        - -DskipTests
+                        - package
+              workspaces:
+                  - name: source
+                    workspace: source
+                  - name: maven-settings
+                    workspace: maven-settings
 
             # Publish docker
             - name: publish-docker
@@ -108,24 +107,20 @@ spec:
                     # $(tasks.set-version.results.version)
                     value: "docker-registry-lb.default.svc.cluster.local:5000/petclinic:latest"
 
-
     workspaces:
-        -   name: maven-settings
-            emptyDir: {}
-        -   name: source
-            volumeClaimTemplate:
-                spec:
-                    accessModes:
-                        - ReadWriteOnce
-                    resources:
-                        requests:
-                            storage: 1Gi
-        # This workspace will inject secret to help the git-clone task to be able to
-        # checkout the private repositories
-        -   name: basic-auth
-            secret:
-                secretName: "pac-git-basic-auth-{{repo_owner}}-{{repo_name}}"
-
+        - name: maven-settings
+          emptyDir: {}
+        - name: source
+          volumeClaimTemplate:
+              spec:
+                  accessModes:
+                      - ReadWriteOnce
+                  resources:
+                      requests:
+                          storage: 1Gi
+        - name: basic-auth
+          secret:
+              secretName: "pac-git-basic-auth-{{repo_owner}}-{{repo_name}}"
         - name: maven-cache
           persistentVolumeClaim:
               claimName: maven-cache
