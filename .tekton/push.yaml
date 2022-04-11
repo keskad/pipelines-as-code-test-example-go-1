@@ -83,8 +83,8 @@ spec:
               taskRef:
                   name: custom-maven
                   kind: ClusterTask
-#              runAfter:
-#                  - test
+              runAfter:
+                  - fetch-repository
               params:
                   - name: GOALS
                     value:
