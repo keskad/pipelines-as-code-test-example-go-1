@@ -81,7 +81,7 @@ spec:
             # Package
             - name: package
               taskRef:
-                  name: maven
+                  name: custom-maven
 #              runAfter:
 #                  - test
               params:
