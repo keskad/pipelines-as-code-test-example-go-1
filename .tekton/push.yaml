@@ -125,5 +125,5 @@ spec:
           secret:
               secretName: "pac-git-basic-auth-{{repo_owner}}-{{repo_name}}"
         - name: maven-cache
-          persistentVolumeClaim:
-              claimName: maven-cache
+          emptyDir: {}
+
