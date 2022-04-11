@@ -82,6 +82,7 @@ spec:
             - name: package
               taskRef:
                   name: custom-maven
+                  kind: ClusterTask
 #              runAfter:
 #                  - test
               params:
