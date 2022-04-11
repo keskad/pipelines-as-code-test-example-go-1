@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-    name: example-go-1-push
+    name: petclinic-release
     namespace: petclinic-cicd
     annotations:
         # The event we are targeting as seen from the webhook payload
