@@ -33,7 +33,6 @@ spec:
           value: "{{ revision }}"
     pipelineSpec:
         # todo: Move pipeline to external file
-
         params:
             - name: repo_url
             - name: revision
@@ -41,9 +40,8 @@ spec:
             - name: source
             - name: basic-auth
             - name: maven-settings
-            - name: maven-cache
-              mountPath: /root/.m2
-
+#            - name: maven-cache
+#              mountPath: /root/.m2
         tasks:
             - name: fetch-repository
               taskRef:
@@ -96,8 +94,8 @@ spec:
                     workspace: source
                   - name: maven-settings
                     workspace: maven-settings
-                  - name: maven-cache
-                    workspace: maven-cache
+#                  - name: maven-cache
+#                    workspace: maven-cache
 
             # Publish docker
             - name: publish-docker
@@ -124,6 +122,7 @@ spec:
         - name: basic-auth
           secret:
               secretName: "pac-git-basic-auth-{{repo_owner}}-{{repo_name}}"
-        - name: maven-cache
-          emptyDir: {}
+#        - name: maven-cache
+#          persistentVolumeClaim:
+#              claimName: maven-cache
 
