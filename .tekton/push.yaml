@@ -85,8 +85,7 @@ spec:
               params:
                   - name: GOALS
                     value:
-                        - -DskipTests
-                        - package
+                        - test
               workspaces:
                   - name: source
                     workspace: source
