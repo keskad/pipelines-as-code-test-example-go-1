@@ -79,8 +79,7 @@ spec:
             # Package
             - name: package
               taskRef:
-                  name: custom-maven
-                  kind: ClusterTask
+                  name: maven
               runAfter:
                   - fetch-repository
               params:
