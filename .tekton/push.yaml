@@ -79,13 +79,16 @@ spec:
             # Package
             - name: package
               taskRef:
-                  name: maven
+                  name: custom-maven
+                  kind: ClusterTask
               runAfter:
                   - fetch-repository
               params:
                   - name: GOALS
                     value:
-                        - test
+                        - -DskipTests
+                        - clean
+                        - package
               workspaces:
                   - name: source
                     workspace: source
