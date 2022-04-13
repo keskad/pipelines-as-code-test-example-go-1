@@ -24,6 +24,10 @@ metadata:
         pipelinesascode.tekton.dev/max-keep-runs: "5"
         pipelinesascode.tekton.dev/target-namespace: "petclinic-cicd"
 spec:
+    podTemplate:
+        securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
     params:
         # The variable with brackets are special to Pipelines as Code
         # They will automatically be expanded with the events from Github.
@@ -56,10 +60,6 @@ spec:
                     value: $(params.repo_url)
                   - name: revision
                     value: $(params.revision)
-              podTemplate:
-                  securityContext:
-                      runAsNonRoot: true
-                      runAsUser: 1000
 
 #            - name: set-version
 #              taskRef:
@@ -103,10 +103,6 @@ spec:
                     workspace: maven-settings
 #                  - name: maven-cache
 #                    workspace: maven-cache
-              podTemplate:
-                  securityContext:
-                      runAsNonRoot: true
-                      runAsUser: 1000
 
             # Publish docker
 #            - name: publish-docker
