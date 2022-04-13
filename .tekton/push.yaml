@@ -108,15 +108,15 @@ spec:
 #                    workspace: maven-cache
 
             # Publish docker
-#            - name: publish-docker
-#              taskRef:
-#                  name: kaniko
-#              runAfter:
-#                  - package
-#              params:
-#                  - name: IMAGE
-#                    # $(tasks.set-version.results.version)
-#                    value: "docker-registry-lb.default.svc.cluster.local:5000/petclinic:latest"
+            - name: publish-docker
+              taskRef:
+                  name: kaniko
+              runAfter:
+                  - package
+              params:
+                  - name: IMAGE
+                    # $(tasks.set-version.results.version)
+                    value: "image-registry.openshift-image-registry.svc:5000/petclinic-cicd/test:latest"
 
     workspaces:
         - name: maven-settings
