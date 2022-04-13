@@ -79,16 +79,24 @@ spec:
 #                        workspace: maven-settings
 
             # Package
-            - name: maven-run
+            - name: package
               taskRef:
-                name: maven
+                  name: custom-maven
+                  kind: ClusterTask
               runAfter:
-                - fetch-repository
+                  - fetch-repository
+              params:
+                  - name: GOALS
+                    value:
+                        - -DskipTests
+                        - package
               workspaces:
-                - name: maven-settings
-                  workspace: maven-settings
-                - name: source
-                  workspace: source
+                  - name: source
+                    workspace: source
+                  - name: maven-settings
+                    workspace: maven-settings
+#                  - name: maven-cache
+#                    workspace: maven-cache
 
             # Publish docker
 #            - name: publish-docker
