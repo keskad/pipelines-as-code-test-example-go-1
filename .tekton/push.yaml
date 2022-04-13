@@ -93,6 +93,8 @@ spec:
               params:
                   - name: MAVEN_IMAGE
                     value: maven:3.8.5-openjdk-11
+                  - name: LOCAL_REPOSITORY_DIR
+                    value: $(workspaces.source)/.mvn-repository
                   - name: GOALS
                     value:
                         - -DskipTests
