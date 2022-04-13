@@ -117,6 +117,9 @@ spec:
                   - name: IMAGE
                     # $(tasks.set-version.results.version)
                     value: "image-registry.openshift-image-registry.svc:5000/petclinic-cicd/test:latest"
+              workspaces:
+                  - name: source
+                    workspace: source
 
     workspaces:
         - name: maven-settings
