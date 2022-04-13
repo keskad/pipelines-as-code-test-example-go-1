@@ -56,6 +56,10 @@ spec:
                     value: $(params.repo_url)
                   - name: revision
                     value: $(params.revision)
+              podTemplate:
+                  securityContext:
+                      runAsNonRoot: true
+                      runAsUser: 1000
 
 #            - name: set-version
 #              taskRef:
@@ -86,6 +90,8 @@ spec:
               runAfter:
                   - fetch-repository
               params:
+                  - name: MAVEN_IMAGE
+                    value: maven:3.8.5-openjdk-11
                   - name: GOALS
                     value:
                         - -DskipTests
@@ -97,6 +103,10 @@ spec:
                     workspace: maven-settings
 #                  - name: maven-cache
 #                    workspace: maven-cache
+              podTemplate:
+                  securityContext:
+                      runAsNonRoot: true
+                      runAsUser: 1000
 
             # Publish docker
 #            - name: publish-docker
